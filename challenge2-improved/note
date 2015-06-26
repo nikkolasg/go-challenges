@@ -1,0 +1,22 @@
+T to K where T = K (number of servers needed to sign = number of total servers)
+server (Xn, xn) public/private key
+* user send M msg to the n servers
+* each n servers compute their own secrets (vn) + corresponding commitment tn
+* each server send back their commitment tn
+* client commpute T = t1 * t2 * t3 .. * tn
+* client send back T to the n servers
+* servers compute their challenge C = hashSchnorr(M,T)
+* servers compute their response share rn = vn - C * xn
+* servers sends back rn
+* client compute combined response r = r1 + r2 + ... + rn
+
+SIGNATURE = (C,r) 
+signature S divided in n part, can be computed from k servers at least- YES
+VERIFY against X = X1 * X2 * ... * Xn
+
+== !!!
+compute a public private key pair
+distribute it using shamir secret amongst the n servers
+ <=> distribute n part of the private key amongst the n servers
+need at least k servers to reconstruct the key
+
